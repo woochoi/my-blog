@@ -112,6 +112,9 @@ a { color: inherit; }
   overflow: hidden;
   background: var(--surface);
 }
+@media (max-width: 600px) {
+  .slide { aspect-ratio: auto; min-height: calc(100vw - 32px); padding-top: 56px; padding-bottom: 32px; }
+}
 .slide .num {
   position: absolute; top: clamp(18px, 4vw, 32px); left: clamp(24px, 6vw, 56px);
   font-size: 0.85rem; font-weight: 700; color: var(--muted); letter-spacing: 0.05em;
@@ -134,12 +137,12 @@ a { color: inherit; }
 .slide.end p, .slide.end .num { color: #cfd3e6; }
 
 .cmd-list { list-style: none; padding: 0; margin: 6px 0 0; display: grid; gap: 10px; }
-.cmd-list li { display: flex; gap: 14px; align-items: baseline; font-size: clamp(0.95rem, 2.6vw, 1.1rem); }
+.cmd-list li { display: flex; flex-wrap: wrap; column-gap: 14px; row-gap: 4px; align-items: baseline; font-size: clamp(0.95rem, 2.6vw, 1.1rem); }
 .cmd-list code {
   font-family: "SF Mono", "JetBrains Mono", Menlo, monospace;
   background: rgba(255, 255, 255, 0.08);
   color: #ffb4a2;
-  padding: 3px 10px; border-radius: 8px; white-space: nowrap; font-size: 0.92em;
+  padding: 3px 10px; border-radius: 8px; overflow-wrap: anywhere; min-width: 0; max-width: 100%; font-size: 0.92em;
 }
 .cmd-list span { color: #b9bfd0; }
 

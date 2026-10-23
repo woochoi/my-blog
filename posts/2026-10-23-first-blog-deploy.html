@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>복습: 내 첫 블로그를 GitHub Pages에 배포하기 | woochoi.log</title>
+  <meta name="description" content="로컬 폴더를 GitHub에 연결하고 GitHub Pages로 배포하기까지의 과정을 단계별로 복습한 카드 뉴스">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="../">woochoi<span>.log</span></a>
+      <nav><a href="https://github.com/woochoi/my-blog">GitHub</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="post-head">
+      <p class="post-meta">2026. 10. 23 · 모두의연구소 아이펠 · 복습</p>
+      <h1>복습: 내 첫 블로그를 GitHub Pages에 배포하기</h1>
+    </div>
+
+    <div class="deck">
+      <div class="slides" id="slides">
+        <section class="slide cover">
+          <span class="num">01</span>
+          <div class="emoji">🗺️</div>
+          <p class="kicker">아이펠 수업 복습</p>
+          <h2>내 컴퓨터에서<br>인터넷까지</h2>
+          <p>빈 폴더가 블로그 주소가 되기까지, 단계별로 다시 따라가 보기</p>
+        </section>
+
+        <section class="slide">
+          <span class="num">02</span>
+          <div class="emoji">📍</div>
+          <p class="kicker">0단계 · 출발점</p>
+          <h2>둘은 아직<br>서로를 모른다</h2>
+          <div class="compare">
+            <div><strong>내 컴퓨터</strong><small>git init만 된 빈 폴더<br>커밋 0개 · master</small></div>
+            <div><strong>GitHub</strong><small>README.md 하나<br>Initial commit · main</small></div>
+          </div>
+          <p style="margin-top:16px">작업 전엔 항상 <strong>git status</strong>로 상태부터 확인!</p>
+        </section>
+
+        <section class="slide dark">
+          <span class="num">03</span>
+          <p class="kicker">1단계 · 연결하기</p>
+          <h2>origin이라는 이름으로<br>GitHub를 등록</h2>
+          <ul class="cmd-list">
+            <li><code>git remote add origin &lt;URL&gt;</code></li>
+            <li><code>git remote -v</code><span>등록 확인</span></li>
+            <li><code>git ls-remote origin</code><span>접속 확인</span></li>
+          </ul>
+          <p style="margin-top:16px">origin은 원격 저장소의 별명. 관례적으로 이 이름을 쓴다.</p>
+        </section>
+
+        <section class="slide dark">
+          <span class="num">04</span>
+          <p class="kicker">2단계 · 기록 맞추기</p>
+          <h2>원격의 기록 위에서<br>시작하기</h2>
+          <ul class="cmd-list">
+            <li><code>git fetch origin</code><span>기록 받아오기</span></li>
+            <li><code>git checkout -b main --track origin/main</code></li>
+            <li><code>git branch -D master</code><span>빈 브랜치 정리</span></li>
+          </ul>
+          <p style="margin-top:16px">--track 덕분에 이제 push / pull 하면 origin/main과 주고받는다.</p>
+        </section>
+
+        <section class="slide">
+          <span class="num">05</span>
+          <div class="emoji">🧱</div>
+          <p class="kicker">3단계 · 블로그 만들기</p>
+          <h2>HTML · CSS · JS<br>세 가지면 충분</h2>
+          <p><strong>index.html</strong> 글 목록 · <strong>style.css</strong> 디자인 · <strong>posts/</strong> 글 파일</p>
+          <p>카드 넘기기는 CSS scroll-snap과 짧은 JavaScript로.</p>
+        </section>
+
+        <section class="slide">
+          <span class="num">06</span>
+          <div class="emoji">🔍</div>
+          <p class="kicker">4단계 · 로컬에서 미리보기</p>
+          <h2>올리기 전에<br>내 컴퓨터에서 먼저</h2>
+          <div class="flow"><span class="step">python3 -m http.server</span></div>
+          <p style="margin-top:16px">미리보기에서 찾은 버그 두 개를 배포 전에 고쳤다. 카드가 너무 커서 버튼이 밀리는 문제, 연속 키 입력 문제.</p>
+        </section>
+
+        <section class="slide">
+          <span class="num">07</span>
+          <div class="emoji">🚫</div>
+          <p class="kicker">5단계 · 첫 push는 실패</p>
+          <h2>"너 누구야?"<br>GitHub의 질문</h2>
+          <div class="flow">
+            <span class="step">add</span><span class="arrow">→</span>
+            <span class="step">commit</span><span class="arrow">→</span>
+            <span class="step">push ❌</span>
+          </div>
+          <p style="margin-top:16px">could not read Username. 커밋은 로컬에 잘 남았지만, 이 컴퓨터엔 GitHub 로그인이 없었다.</p>
+        </section>
+
+        <section class="slide dark">
+          <span class="num">08</span>
+          <p class="kicker">6단계 · 로그인</p>
+          <h2>gh auth login</h2>
+          <ul class="cmd-list">
+            <li><code>GitHub.com</code><span>어디서 쓰나요?</span></li>
+            <li><code>Web browser</code><span>어떻게 로그인?</span></li>
+            <li><code>HTTPS</code><span>통신 방식</span></li>
+            <li><code>Yes ⭐</code><span>git도 이 로그인 사용</span></li>
+          </ul>
+          <p style="margin-top:16px">일회용 코드를 브라우저에 입력하면 "you're all set!"</p>
+        </section>
+
+        <section class="slide">
+          <span class="num">09</span>
+          <div class="emoji">🌐</div>
+          <p class="kicker">7단계 · push 성공, Pages 켜기</p>
+          <h2>저장소를<br>웹사이트로</h2>
+          <p><strong>364a43f..90b35cd main → main</strong> 드디어 GitHub에 올라갔다.</p>
+          <p>Settings → Pages → Branch: main / root → Save</p>
+        </section>
+
+        <section class="slide">
+          <span class="num">10</span>
+          <div class="emoji">✅</div>
+          <p class="kicker">8단계 · 배포 확인</p>
+          <h2>404에서 200으로</h2>
+          <div class="flow">
+            <span class="step">building · 404</span><span class="arrow">→</span>
+            <span class="step">built · 200</span>
+          </div>
+          <p style="margin-top:16px">1분 정도 기다리니 woochoi.github.io/my-blog 가 열렸다!</p>
+        </section>
+
+        <section class="slide end">
+          <span class="num">11</span>
+          <div class="emoji">🔁</div>
+          <h2>설정은 한 번,<br>이 세 줄은 매번</h2>
+          <p><strong>git add → git commit → git push</strong></p>
+          <p>이 글도 그렇게 올라왔다.</p>
+        </section>
+      </div>
+
+      <div class="controls">
+        <button type="button" id="prev" aria-label="이전 카드">←</button>
+        <div class="dots" id="dots"></div>
+        <button type="button" id="next" aria-label="다음 카드">→</button>
+      </div>
+      <p class="hint">옆으로 넘기거나 키보드 ← → 로 볼 수 있어요</p>
+    </div>
+
+    <a class="back" href="../">← 글 목록으로</a>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">© 2026 woochoi · Made with GitHub Pages</div>
+  </footer>
+
+  <script src="../deck.js"></script>
+</body>
+</html>
